@@ -1,0 +1,206 @@
+:root {
+  --linear-180: linear-gradient(180deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+  --linear-90: linear-gradient(90deg, hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+  --linear-btn: linear-gradient(
+    90deg,
+    hsl(240, 78%, 98%) 0,
+    hsl(240, 78%, 98%) 33%,
+    hsl(236, 72%, 79%) 66%,
+    hsl(237, 63%, 64%) 100%
+  );
+  --primary: hsl(237, 63%, 64%);
+  --white: hsl(240, 78%, 98%);
+  --light-gray: hsl(234, 14%, 74%);
+  --gray: hsl(233, 13%, 49%);
+  --dark-gray: hsl(232, 13%, 33%);
+}
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+.main {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url("./images/bg-top.svg") top right no-repeat,
+    url("./images/bg-bottom.svg") bottom left no-repeat, var(--white);
+}
+
+.title {
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 40px;
+  color: var(--gray);
+  margin: 70px auto 40px;
+}
+.input{
+  display: none;
+}
+.toggle-container {
+  margin: 0 auto 64px;
+  font-size: 16px;
+  letter-spacing: -0.04em;
+  color: var(--light-gray);
+  display: flex;
+  grid-gap: 24px;
+  align-items: center;
+}
+
+.toggle-label {
+  position: relative;
+  width: 56px;
+  height: 32px;
+  border-radius: 32px;
+  background: var(--linear-90);
+}
+.toggle-label:after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--white);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 20px rgba(0,0,0, .1);
+}
+
+.card-title {
+  font-size: 18px;
+  color: var(--gray);
+  margin-bottom: 18px;
+}
+.card-value {
+  display: flex;
+  align-items: center;
+  font-size: 40px;
+  color: var(--dark-gray);
+  margin-bottom: 24px;
+}
+
+#master:after,
+#professional:after,
+#basic:after {
+  content: "19.99";
+  font-size: 72px;
+  letter-spacing: -0.03em;
+  margin-left: 7px;
+}
+#professional:after {
+  content: "24.99";
+}
+#master:after {
+  content: "39.99";
+}
+
+.card-list {
+  list-style: none;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.card-item {
+  border-top: 1px solid var(--light-gray);
+  padding: 16px 0 18px;
+  text-align: center;
+  color: var(--gray);
+}
+.card-item:last-of-type {
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.card-button {
+  width: 100%;
+  padding: 14px 0 13px;
+  font-size: 14px;
+  color: var(--white);
+  background: var(--linear-btn);
+  background-size: 300%;
+  background-position: right;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: all ease 0.6s;
+}
+.card-button:hover {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  background-position: left;
+}
+
+.card-main {
+  background: var(--linear-180);
+  padding: 60px 32px 64px;
+}
+
+.card-main .card-item,
+.card-main .card-value,
+.card-main .card-title {
+  color: var(--white);
+}
+
+.card-main .card-button {
+  background-position: left;
+  color: var(--primary);
+}
+.card-main .card-button:hover {
+  border-color: var(--white);
+  background-position: right;
+  color: var(--white);
+}
+
+.input:checked ~ .toggle-container > .toggle-label:after {
+  transform: translateX(24px);
+}
+.input:checked ~ .wrapper > .card > .card-value > #basic:after {
+  content: "199.99";
+}
+.input:checked ~ .wrapper > .card > .card-value > #professional:after {
+  content: "249.99";
+}
+.input:checked ~ .wrapper > .card > .card-value > #master:after {
+  content: "399.99";
+}
+.attribution{
+  margin-top: auto;
+  margin-bottom: 25px;
+}
+
+@media screen and (max-width: 475px){
+  .main{
+    padding: 60px 25px 0;
+  }
+  .wrapper{
+    flex-direction: column;
+    grid-gap: 30px;
+  }
+  .attribution{
+    margin-top: 70px;
+  }
+}
